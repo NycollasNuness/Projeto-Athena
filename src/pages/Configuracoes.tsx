@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Minus, Plus } from "lucide-react"
 import { useState } from "react"
 
 const Configuracoes = () => {
@@ -29,7 +31,7 @@ const Configuracoes = () => {
     domingo: true
   })
 
-  const [dailyHours] = useState({
+  const [dailyHours, setDailyHours] = useState({
     segunda: 2,
     terca: 2, 
     quarta: 2,
@@ -44,6 +46,22 @@ const Configuracoes = () => {
       ...prev,
       [subject]: !prev[subject as keyof typeof prev]
     }))
+  }
+
+  const toggleStudyDay = (day: string) => {
+    setStudyDays(prev => ({
+      ...prev,
+      [day]: !prev[day as keyof typeof prev]
+    }))
+  }
+
+  const updateDailyHours = (day: string, hours: number) => {
+    if (hours >= 0 && hours <= 12) { // Limit to reasonable hours
+      setDailyHours(prev => ({
+        ...prev,
+        [day]: hours
+      }))
+    }
   }
 
   const subjectsList = [
@@ -116,18 +134,19 @@ const Configuracoes = () => {
                   <h3 className="text-sm font-medium text-foreground mb-4">
                     Dias de estudo
                   </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {Object.entries(studyDays).map(([day, enabled]) => (
-                      <Button
-                        key={day}
-                        variant={enabled ? "default" : "outline"}
-                        size="sm"
-                        className="rounded-full text-xs"
-                      >
-                        {day.charAt(0).toUpperCase() + day.slice(1)}
-                      </Button>
-                    ))}
-                  </div>
+                   <div className="flex flex-wrap gap-2">
+                     {Object.entries(studyDays).map(([day, enabled]) => (
+                       <Button
+                         key={day}
+                         variant={enabled ? "default" : "outline"}
+                         size="sm"
+                         className="rounded-full text-xs"
+                         onClick={() => toggleStudyDay(day)}
+                       >
+                         {day.charAt(0).toUpperCase() + day.slice(1)}
+                       </Button>
+                     ))}
+                   </div>
                 </div>
 
                 {/* Daily Hours */}
@@ -135,18 +154,38 @@ const Configuracoes = () => {
                   <h3 className="text-sm font-medium text-foreground mb-4">
                     carga horária diária
                   </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {Object.entries(dailyHours).map(([day, hours]) => (
-                      <div key={day} className="text-center">
-                        <div className="text-xs text-muted-foreground mb-1">
-                          {day.charAt(0).toUpperCase() + day.slice(1)}
-                        </div>
-                        <div className="text-lg font-bold text-foreground">
-                          {hours}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                     {Object.entries(dailyHours).map(([day, hours]) => (
+                       <div key={day} className="text-center">
+                         <div className="text-xs text-muted-foreground mb-2">
+                           {day.charAt(0).toUpperCase() + day.slice(1)}
+                         </div>
+                         <div className="flex items-center justify-center gap-2">
+                           <Button
+                             variant="outline"
+                             size="sm"
+                             className="h-8 w-8 p-0"
+                             onClick={() => updateDailyHours(day, hours - 1)}
+                             disabled={hours <= 0}
+                           >
+                             <Minus className="h-3 w-3" />
+                           </Button>
+                           <span className="text-lg font-bold text-foreground min-w-[2ch]">
+                             {hours}
+                           </span>
+                           <Button
+                             variant="outline"
+                             size="sm"
+                             className="h-8 w-8 p-0"
+                             onClick={() => updateDailyHours(day, hours + 1)}
+                             disabled={hours >= 12}
+                           >
+                             <Plus className="h-3 w-3" />
+                           </Button>
+                         </div>
+                       </div>
+                     ))}
+                   </div>
                 </div>
               </div>
             </CardContent>

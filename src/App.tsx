@@ -23,25 +23,28 @@ const App = () => (
         <SidebarProvider>
           <div className="flex min-h-screen w-full">
             <AppSidebar />
-            <main className="flex-1">
+            <div className="flex-1 flex flex-col">
               {/* Header with toggle button */}
-              <header className="h-16 flex items-center border-b border-border bg-background px-6">
+              <header className="h-16 flex items-center border-b border-border bg-background px-6 relative z-10">
                 <SidebarTrigger className="p-2 hover:bg-muted rounded-lg" />
                 <h2 className="ml-4 text-lg font-semibold text-foreground">
                   Sistema Athena
                 </h2>
               </header>
               
-              <Routes>
-                <Route path="/" element={<TelaInicial />} />
-                <Route path="/revisar" element={<Revisar />} />
-                <Route path="/estatisticas" element={<Estatisticas />} />
-                <Route path="/configuracoes" element={<Configuracoes />} />
-                <Route path="/ajuda" element={<Ajuda />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
+              {/* Main content */}
+              <main className="flex-1">
+                <Routes>
+                  <Route path="/" element={<TelaInicial />} />
+                  <Route path="/revisar" element={<Revisar />} />
+                  <Route path="/estatisticas" element={<Estatisticas />} />
+                  <Route path="/configuracoes" element={<Configuracoes />} />
+                  <Route path="/ajuda" element={<Ajuda />} />
+                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </main>
+            </div>
           </div>
         </SidebarProvider>
       </BrowserRouter>
