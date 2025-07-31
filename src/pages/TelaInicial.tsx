@@ -2,7 +2,7 @@ import React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-const Cronograma = () => {
+const TelaInicial = () => {
   const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
   const timeSlots = Array.from({ length: 24 }, (_, i) => i)
 
@@ -104,4 +104,4 @@ const Cronograma = () => {
   )
 }
 
-export default Cronograma
+export default TelaInicial

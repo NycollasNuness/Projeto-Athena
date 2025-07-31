@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Play } from "lucide-react"
 
-const Dashboard = () => {
+const Revisar = () => {
   const decks = [
     {
       id: 1,
@@ -69,4 +69,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default Revisar

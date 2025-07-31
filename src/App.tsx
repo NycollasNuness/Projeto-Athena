@@ -5,8 +5,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppSidebar } from "@/components/AppSidebar";
-import Dashboard from "./pages/Dashboard";
-import Cronograma from "./pages/Cronograma";
+import TelaInicial from "./pages/TelaInicial";
+import Revisar from "./pages/Revisar";
 import Estatisticas from "./pages/Estatisticas";
 import Configuracoes from "./pages/Configuracoes";
 import Ajuda from "./pages/Ajuda";
@@ -24,9 +24,17 @@ const App = () => (
           <div className="flex min-h-screen w-full">
             <AppSidebar />
             <main className="flex-1">
+              {/* Header with toggle button */}
+              <header className="h-16 flex items-center border-b border-border bg-background px-6">
+                <SidebarTrigger className="p-2 hover:bg-muted rounded-lg" />
+                <h2 className="ml-4 text-lg font-semibold text-foreground">
+                  Sistema Athena
+                </h2>
+              </header>
+              
               <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/cronograma" element={<Cronograma />} />
+                <Route path="/" element={<TelaInicial />} />
+                <Route path="/revisar" element={<Revisar />} />
                 <Route path="/estatisticas" element={<Estatisticas />} />
                 <Route path="/configuracoes" element={<Configuracoes />} />
                 <Route path="/ajuda" element={<Ajuda />} />

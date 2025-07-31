@@ -14,7 +14,7 @@ import {
 
 const menuItems = [
   { title: "Tela inicial", url: "/", icon: Home },
-  { title: "Revisar", url: "/cronograma", icon: BookOpen },
+  { title: "Revisar", url: "/revisar", icon: BookOpen },
   { title: "Estatísticas", url: "/estatisticas", icon: BarChart3 },
   { title: "Config.", url: "/configuracoes", icon: Settings },
   { title: "Ajuda", url: "/ajuda", icon: HelpCircle },
