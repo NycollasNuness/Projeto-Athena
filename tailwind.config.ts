@@ -52,6 +52,21 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Study app specific colors
+				'study-green': {
+					DEFAULT: 'hsl(var(--study-green))',
+					foreground: 'hsl(var(--study-green-foreground))'
+				},
+				'study-cyan': {
+					DEFAULT: 'hsl(var(--study-cyan))',
+					foreground: 'hsl(var(--study-cyan-foreground))'
+				},
+				'study-peach': {
+					DEFAULT: 'hsl(var(--study-peach))',
+					foreground: 'hsl(var(--study-peach-foreground))'
+				},
+				success: 'hsl(var(--success))',
+				error: 'hsl(var(--error))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
