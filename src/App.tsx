@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppSidebar } from "@/components/AppSidebar";
 import TelaInicial from "./pages/TelaInicial";
 import CriarFlashcards from "./pages/CriarFlashcards";
+import EditarFlashcards from "./pages/EditarFlashcards";
 import Revisar from "./pages/Revisar";
 import Estatisticas from "./pages/Estatisticas";
 import Configuracoes from "./pages/Configuracoes";
@@ -39,6 +40,7 @@ const App = () => (
                 <Routes>
                   <Route path="/" element={<TelaInicial />} />
                   <Route path="/criar-flashcards" element={<CriarFlashcards />} />
+                  <Route path="/editar-flashcards/:id" element={<EditarFlashcards />} />
                   <Route path="/revisar" element={<Revisar />} />
                   <Route path="/estatisticas" element={<Estatisticas />} />
                   <Route path="/configuracoes" element={<Configuracoes />} />

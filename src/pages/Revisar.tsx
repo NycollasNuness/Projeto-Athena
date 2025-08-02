@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Play } from "lucide-react"
+import { Play, Edit } from "lucide-react"
 import { useDecks } from "@/hooks/useDecks"
+import { useNavigate } from "react-router-dom"
 
 const Revisar = () => {
   const { decks } = useDecks()
+  const navigate = useNavigate()
 
   const getCurrentDayName = () => {
     const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
@@ -38,12 +40,22 @@ const Revisar = () => {
                       {deck.flashcards.length} flashcard{deck.flashcards.length !== 1 ? 's' : ''}
                     </p>
                   </div>
-                  <Button 
-                    variant="secondary" 
-                    className="bg-white/20 hover:bg-white/30 text-white border-white/30 px-6"
-                  >
-                    iniciar
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button 
+                      variant="secondary" 
+                      size="icon"
+                      onClick={() => navigate(`/editar-flashcards/${deck.id}`)}
+                      className="bg-white/20 hover:bg-white/30 text-white border-white/30"
+                    >
+                      <Edit className="h-4 w-4" />
+                    </Button>
+                    <Button 
+                      variant="secondary" 
+                      className="bg-white/20 hover:bg-white/30 text-white border-white/30 px-6"
+                    >
+                      iniciar
+                    </Button>
+                  </div>
                 </div>
               </CardContent>
             </Card>

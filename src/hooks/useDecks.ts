@@ -93,9 +93,23 @@ export const useDecks = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedDecks))
   }
 
+  const updateDeck = (id: string, name: string, flashcards: Flashcard[]) => {
+    const updatedDecks = decks.map(deck => 
+      deck.id === id ? { ...deck, name, flashcards } : deck
+    )
+    setDecks(updatedDecks)
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedDecks))
+  }
+
+  const getDeckById = (id: string) => {
+    return decks.find(deck => deck.id === id)
+  }
+
   return {
     decks,
     addDeck,
-    removeDeck
+    removeDeck,
+    updateDeck,
+    getDeckById
   }
 }

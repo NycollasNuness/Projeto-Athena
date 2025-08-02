@@ -100,7 +100,11 @@ const TelaInicial = () => {
           >
             Criar matéria
           </Button>
-          <Button variant="secondary" className="bg-study-peach hover:bg-study-peach/90 text-study-peach-foreground px-8 py-3 rounded-2xl">
+          <Button 
+            onClick={() => navigate('/revisar')}
+            variant="secondary" 
+            className="bg-study-peach hover:bg-study-peach/90 text-study-peach-foreground px-8 py-3 rounded-2xl"
+          >
             editar
           </Button>
         </div>
