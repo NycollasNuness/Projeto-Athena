@@ -1,4 +1,4 @@
-import { Home, BarChart3, Settings, HelpCircle, BookOpen } from "lucide-react"
+import { Home, BarChart3, Settings, HelpCircle, BookOpen, User } from "lucide-react"
 import { NavLink, useLocation } from "react-router-dom"
 
 import {
@@ -63,17 +63,21 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* Bottom section with user info */}
+        {/* Bottom section with account link */}
         <div className="mt-auto p-4 border-t border-border">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-study-cyan flex items-center justify-center flex-shrink-0">
-              <span className="text-sm font-medium text-study-cyan-foreground">U</span>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-foreground whitespace-nowrap">Sair</span>
-              <span className="text-xs text-muted-foreground whitespace-nowrap">Conta</span>
-            </div>
-          </div>
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton 
+                asChild 
+                className={`w-full justify-start rounded-xl p-3 ${getNavClasses(location.pathname === '/conta')}`}
+              >
+                <NavLink to="/conta" className="flex items-center gap-3">
+                  <User className="h-5 w-5 flex-shrink-0" />
+                  <span className="text-sm whitespace-nowrap">Conta</span>
+                </NavLink>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
         </div>
       </SidebarContent>
     </Sidebar>

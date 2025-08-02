@@ -10,6 +10,7 @@ import Revisar from "./pages/Revisar";
 import Estatisticas from "./pages/Estatisticas";
 import Configuracoes from "./pages/Configuracoes";
 import Ajuda from "./pages/Ajuda";
+import Conta from "./pages/Conta";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
                   <Route path="/estatisticas" element={<Estatisticas />} />
                   <Route path="/configuracoes" element={<Configuracoes />} />
                   <Route path="/ajuda" element={<Ajuda />} />
+                  <Route path="/conta" element={<Conta />} />
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>
