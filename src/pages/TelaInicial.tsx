@@ -104,4 +104,4 @@ const TelaInicial = () => {
   )
 }
 
-export default TelaInicial
+export default TelaInicial;
