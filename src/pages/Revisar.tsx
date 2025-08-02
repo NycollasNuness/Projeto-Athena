@@ -1,28 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Play } from "lucide-react"
+import { useDecks } from "@/hooks/useDecks"
 
 const Revisar = () => {
-  const decks = [
-    {
-      id: 1,
-      name: "English deck",
-      color: "bg-study-cyan",
-      colorForeground: "text-study-cyan-foreground"
-    },
-    {
-      id: 2,
-      name: "Revolução deck", 
-      color: "bg-study-peach",
-      colorForeground: "text-study-peach-foreground"
-    },
-    {
-      id: 3,
-      name: "Células deck",
-      color: "bg-study-green", 
-      colorForeground: "text-study-green-foreground"
-    }
-  ]
+  const { decks } = useDecks()
 
   const getCurrentDayName = () => {
     const days = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
@@ -52,6 +34,9 @@ const Revisar = () => {
                     <h3 className={`text-xl font-medium ${deck.colorForeground}`}>
                       {deck.name}
                     </h3>
+                    <p className={`text-sm opacity-75 ${deck.colorForeground}`}>
+                      {deck.flashcards.length} flashcard{deck.flashcards.length !== 1 ? 's' : ''}
+                    </p>
                   </div>
                   <Button 
                     variant="secondary" 

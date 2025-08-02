@@ -6,15 +6,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { ArrowLeft, Plus, Trash2 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-
-interface Flashcard {
-  id: string
-  front: string
-  back: string
-}
+import { useDecks, type Flashcard } from "@/hooks/useDecks"
+import { useToast } from "@/hooks/use-toast"
 
 const CriarFlashcards = () => {
   const navigate = useNavigate()
+  const { addDeck } = useDecks()
+  const { toast } = useToast()
   const [subjectName, setSubjectName] = useState("")
   const [flashcards, setFlashcards] = useState<Flashcard[]>([
     { id: '1', front: '', back: '' }
@@ -38,10 +36,36 @@ const CriarFlashcards = () => {
   }
 
   const handleSave = () => {
-    console.log('Saving subject:', subjectName)
-    console.log('Flashcards:', flashcards)
-    // Here you would typically save to database
-    navigate('/')
+    if (!subjectName.trim()) {
+      toast({
+        title: "Erro",
+        description: "Por favor, digite o nome da matéria.",
+        variant: "destructive"
+      })
+      return
+    }
+
+    const validFlashcards = flashcards.filter(card => 
+      card.front.trim() && card.back.trim()
+    )
+
+    if (validFlashcards.length === 0) {
+      toast({
+        title: "Erro", 
+        description: "Adicione pelo menos um flashcard válido.",
+        variant: "destructive"
+      })
+      return
+    }
+
+    addDeck(subjectName, validFlashcards)
+    
+    toast({
+      title: "Sucesso!",
+      description: `Matéria "${subjectName}" criada com ${validFlashcards.length} flashcard${validFlashcards.length > 1 ? 's' : ''}.`
+    })
+    
+    navigate('/revisar')
   }
 
   return (
