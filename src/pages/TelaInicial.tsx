@@ -1,8 +1,10 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { useNavigate } from "react-router-dom"
 
 const TelaInicial = () => {
+  const navigate = useNavigate()
   const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
   const timeSlots = Array.from({ length: 24 }, (_, i) => i)
 
@@ -92,7 +94,10 @@ const TelaInicial = () => {
 
         {/* Action buttons */}
         <div className="flex justify-center gap-4 mt-8">
-          <Button className="bg-study-cyan hover:bg-study-cyan/90 text-study-cyan-foreground px-8 py-3 rounded-2xl">
+          <Button 
+            onClick={() => navigate('/criar-flashcards')}
+            className="bg-study-cyan hover:bg-study-cyan/90 text-study-cyan-foreground px-8 py-3 rounded-2xl"
+          >
             Criar matéria
           </Button>
           <Button variant="secondary" className="bg-study-peach hover:bg-study-peach/90 text-study-peach-foreground px-8 py-3 rounded-2xl">

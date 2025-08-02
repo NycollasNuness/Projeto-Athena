@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppSidebar } from "@/components/AppSidebar";
 import TelaInicial from "./pages/TelaInicial";
+import CriarFlashcards from "./pages/CriarFlashcards";
 import Revisar from "./pages/Revisar";
 import Estatisticas from "./pages/Estatisticas";
 import Configuracoes from "./pages/Configuracoes";
@@ -37,6 +38,7 @@ const App = () => (
               <main className="flex-1">
                 <Routes>
                   <Route path="/" element={<TelaInicial />} />
+                  <Route path="/criar-flashcards" element={<CriarFlashcards />} />
                   <Route path="/revisar" element={<Revisar />} />
                   <Route path="/estatisticas" element={<Estatisticas />} />
                   <Route path="/configuracoes" element={<Configuracoes />} />
