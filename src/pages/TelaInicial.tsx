@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom"
 const TelaInicial = () => {
   const navigate = useNavigate()
   const days = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
-  const timeSlots = Array.from({ length: 24 }, (_, i) => i)
+  const timeSlots = Array.from({ length: 18 }, (_, i) => i + 6) // 6h às 23h
 
   // Sample schedule data - in a real app this would come from state/database
   const scheduleEvents = [
-    { day: 2, startHour: 9, endHour: 11, type: 'study', subject: 'Matemática' },
-    { day: 3, startHour: 10, endHour: 12, type: 'study', subject: 'Inglês' },
-    { day: 5, startHour: 14, endHour: 15, type: 'review', subject: 'Revisão' }
+    { day: 2, startHour: 8, endHour: 10, type: 'study', subject: 'Matemática' },
+    { day: 3, startHour: 8, endHour: 10, type: 'study', subject: 'Inglês' },
+    { day: 5, startHour: 10, endHour: 11, type: 'study', subject: 'História' },
+    { day: 5, startHour: 20, endHour: 21, type: 'review', subject: 'Revisão' }
   ]
 
   const getEventForSlot = (dayIndex: number, hour: number) => {
@@ -38,16 +39,16 @@ const TelaInicial = () => {
         </div>
 
         {/* Calendar Grid */}
-        <Card className="bg-white shadow-lg border-0 rounded-3xl overflow-hidden">
-          <CardContent className="p-6">
-            <div className="grid grid-cols-8 gap-1">
+        <Card className="bg-white shadow-sm border border-border/50 rounded-2xl overflow-hidden">
+          <CardContent className="p-4">
+            <div className="grid grid-cols-8 gap-0 border border-border/30 rounded-lg overflow-hidden">
               {/* Time column header */}
-              <div className="p-3"></div>
+              <div className="bg-muted/30 p-3 border-r border-border/30"></div>
               
               {/* Day headers */}
               {days.map((day) => (
-                <div key={day} className="p-3 text-center">
-                  <span className="text-sm font-medium text-muted-foreground">{day}</span>
+                <div key={day} className="bg-muted/30 p-3 text-center border-r border-border/30 last:border-r-0">
+                  <span className="text-sm font-medium text-foreground">{day}</span>
                 </div>
               ))}
 
@@ -55,8 +56,8 @@ const TelaInicial = () => {
               {timeSlots.map((hour) => (
                 <React.Fragment key={hour}>
                   {/* Time label */}
-                  <div className="p-2 text-xs text-muted-foreground text-right border-r border-border">
-                    {hour.toString().padStart(2, '0')}
+                  <div className="bg-muted/20 p-3 text-sm font-medium text-muted-foreground text-center border-r border-b border-border/30">
+                    {hour}
                   </div>
                   
                   {/* Day columns */}
@@ -67,20 +68,18 @@ const TelaInicial = () => {
                     return (
                       <div 
                         key={`${dayIndex}-${hour}`} 
-                        className="relative h-12 border-b border-border"
+                        className="relative h-16 border-r border-b border-border/30 last:border-r-0 bg-background"
                       >
                         {isEventStart && (
                           <div
-                            className={`absolute inset-x-0 top-0 rounded-lg ${
+                            className={`absolute inset-0 m-0.5 rounded-md flex items-center justify-center ${
                               event.type === 'study' ? 'bg-study-green' : 'bg-study-cyan'
-                            } opacity-80`}
-                            style={{ height: getEventHeight(event) }}
+                            }`}
+                            style={{ height: `${(event.endHour - event.startHour) * 64 - 4}px` }}
                           >
-                            <div className="p-2">
-                              <span className="text-xs font-medium text-white">
-                                {event.subject}
-                              </span>
-                            </div>
+                            <span className="text-xs font-medium text-white text-center px-1">
+                              {event.subject}
+                            </span>
                           </div>
                         )}
                       </div>
