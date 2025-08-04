@@ -10,22 +10,27 @@ import { StudyProgress } from "@/components/StudyProgress"
 const Estudar = () => {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { getDeckById } = useDecks()
+  const { getDeckById, decks } = useDecks()
   const { toast } = useToast()
   
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [deck, setDeck] = useState(getDeckById(id || ''))
+  const [deck, setDeck] = useState<any>(null)
 
   useEffect(() => {
-    if (!deck) {
-      toast({
-        title: "Erro",
-        description: "Deck não encontrado.",
-        variant: "destructive"
-      })
-      navigate('/revisar')
+    if (id && decks.length > 0) {
+      const foundDeck = getDeckById(id)
+      if (foundDeck) {
+        setDeck(foundDeck)
+      } else {
+        toast({
+          title: "Erro",
+          description: "Deck não encontrado.",
+          variant: "destructive"
+        })
+        navigate('/revisar')
+      }
     }
-  }, [deck, navigate, toast])
+  }, [id, decks, getDeckById, navigate, toast])
 
   if (!deck || deck.flashcards.length === 0) {
     return (
