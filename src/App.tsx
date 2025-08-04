@@ -9,6 +9,7 @@ import TelaInicial from "./pages/TelaInicial";
 import CriarFlashcards from "./pages/CriarFlashcards";
 import EditarFlashcards from "./pages/EditarFlashcards";
 import Revisar from "./pages/Revisar";
+import Estudar from "./pages/Estudar";
 import Estatisticas from "./pages/Estatisticas";
 import Configuracoes from "./pages/Configuracoes";
 import Ajuda from "./pages/Ajuda";
@@ -42,6 +43,7 @@ const App = () => (
                   <Route path="/criar-flashcards" element={<CriarFlashcards />} />
                   <Route path="/editar-flashcards/:id" element={<EditarFlashcards />} />
                   <Route path="/revisar" element={<Revisar />} />
+                  <Route path="/estudar/:id" element={<Estudar />} />
                   <Route path="/estatisticas" element={<Estatisticas />} />
                   <Route path="/configuracoes" element={<Configuracoes />} />
                   <Route path="/ajuda" element={<Ajuda />} />

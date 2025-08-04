@@ -51,6 +51,7 @@ const Revisar = () => {
                     </Button>
                     <Button 
                       variant="secondary" 
+                      onClick={() => navigate(`/estudar/${deck.id}`)}
                       className="bg-white/20 hover:bg-white/30 text-white border-white/30 px-6"
                     >
                       iniciar
